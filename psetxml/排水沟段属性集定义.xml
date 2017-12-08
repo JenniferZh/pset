@@ -1,0 +1,88 @@
+﻿<PropertySetDef>
+    <Name>Pset_PS_DitchSegmentCommon</Name>
+    <Definition>铁路排水沟段</Definition>
+    <IfcVersion version="2x4" />
+    <ApplicableClasses>
+        <ClassName>IfcPipeSegment</ClassName>
+    </ApplicableClasses>
+    <PropertyDefs>
+        <PropertyDef ifdguid="http://www.cbims.org.cn/Pset_PS_DitchSegmentCommon">
+            <Name>Type</Name>
+            <Definition>string</Definition>
+            <PropertyType p4:type="PropertyEnumeratedValue" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">
+                <TypePropertyEnumeratedValue name="typeEnum">
+                    <EnumList>
+                        <EnumItem>DrainageDitchSubgrade</EnumItem>
+                        <EnumItem>RapaidScour</EnumItem>
+                        <EnumItem>Powerdissipation</EnumItem>
+                        <EnumItem>RailwaySideDrainage</EnumItem>
+                        <EnumItem>RailwayCrossDrainage</EnumItem>
+                        <EnumItem>RoadSideDrainage</EnumItem>
+                        <EnumItem>InterchangebridgeDrainage</EnumItem>
+                        <EnumItem>TunnelcenterDitch</EnumItem>
+                        <EnumItem>PermeableFrenchDrain</EnumItem>
+                        <EnumItem>SlopeDrain</EnumItem>
+                        <EnumItem>TunnelcenterDitch</EnumItem>
+                        <EnumItem>CircumferentialFrenchDrain</EnumItem>
+                        <EnumItem>LongitudinalFrenchDrain</EnumItem>
+                        <EnumItem>TransverseDrainpipe</EnumItem>
+                        <EnumItem>VerticalDrainpipe</EnumItem>
+                    </EnumList>
+                </TypePropertyEnumeratedValue>
+            </PropertyType>
+            <NameAliases>
+                <NameAlias lang="zh-CN">路基排水沟</NameAlias>
+            </NameAliases>
+            <DefinitionAliases>
+                <DefinitionAlias lang="zh-CN">铁路排水沟段类型</DefinitionAlias>
+            </DefinitionAliases>
+        </PropertyDef>
+        <PropertyDef ifdguid="http://www.cbims.org.cn/Pset_PS_DitchSegmentCommon">
+            <Name>RefrenceName</Name>
+            <PropertyType p4:type="PropertySingleValue" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">
+                <TypePropertySingleValue>
+                    <DataType type="IfcLabel" />
+                </TypePropertySingleValue>
+            </PropertyType>
+            <NameAliases>
+                <NameAlias lang="zh-CN">图号名称</NameAlias>
+            </NameAliases>
+            <DefinitionAliases>
+                <DefinitionAlias lang="zh-CN">实体所引用的标准图号</DefinitionAlias>
+            </DefinitionAliases>
+        </PropertyDef>
+        <PropertyDef ifdguid="http://www.cbims.org.cn/Pset_PS_DitchSegmentCommon">
+            <Name>RefrenceSectionName</Name>
+            <PropertyType p4:type="PropertySingleValue" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">
+                <TypePropertySingleValue>
+                    <DataType type="IfcLabel" />
+                </TypePropertySingleValue>
+            </PropertyType>
+            <NameAliases>
+                <NameAlias lang="zh-CN">分册名称</NameAlias>
+            </NameAliases>
+            <DefinitionAliases>
+                <DefinitionAlias lang="zh-CN">标准图号的分册名称</DefinitionAlias>
+            </DefinitionAliases>
+        </PropertyDef>
+        <PropertyDef ifdguid="http://www.cbims.org.cn/Pset_PS_DitchSegmentCommon">
+            <Name>status</Name>
+            <PropertyType p4:type="PropertyEnumeratedValue" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">
+                <TypePropertyEnumeratedValue>
+                    <EnumList>
+                        <EnumItem>NEW, EXISTING, DEMOLISH, TEMPORARY, OTHER, NOTKNOWN, UNSET</EnumItem>
+                    </EnumList>
+                </TypePropertyEnumeratedValue>
+            </PropertyType>
+            <NameAliases>
+                <NameAlias lang="zh-CN">状态</NameAlias>
+            </NameAliases>
+            <DefinitionAliases>
+                <DefinitionAlias lang="zh-CN">表示实体的状态，分为新建、既有、拆除、临时、其他、未知、未设定</DefinitionAlias>
+            </DefinitionAliases>
+        </PropertyDef>
+    </PropertyDefs>
+    <PsetDefinitionAliases>
+        <PsetDefinitionAlias lang="zh-CN" />
+    </PsetDefinitionAliases>
+</PropertySetDef>

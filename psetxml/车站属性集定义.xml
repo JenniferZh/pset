@@ -1,0 +1,68 @@
+﻿<PropertySetDef>
+    <Name>Pset_StationCommon</Name>
+    <IfcVersion version="2x4" />
+    <ApplicableClasses>
+        <ClassName>IfcRailwayStation</ClassName>
+    </ApplicableClasses>
+    <PropertyDefs>
+        <PropertyDef ifdguid="http://www.cbims.org.cn/Pset_StationCommon">
+            <Name>StationHousePos</Name>
+            <PropertyType p4:type="PropertySingleValue" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">
+                <TypePropertySingleValue>
+                    <DataType type="IfcLabel" />
+                </TypePropertySingleValue>
+            </PropertyType>
+            <NameAliases>
+                <NameAlias lang="zh-CN">站房左右侧</NameAlias>
+            </NameAliases>
+            <DefinitionAliases>
+                <DefinitionAlias lang="zh-CN">站房在线路前进方向的左右侧</DefinitionAlias>
+            </DefinitionAliases>
+        </PropertyDef>
+        <PropertyDef ifdguid="http://www.cbims.org.cn/Pset_StationCommon">
+            <Name>EffectiveLength</Name>
+            <PropertyType p4:type="PropertySingleValue" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">
+                <TypePropertySingleValue>
+                    <DataType type="IfcPositiveLengthMeasure" />
+                </TypePropertySingleValue>
+            </PropertyType>
+            <NameAliases>
+                <NameAlias lang="zh-CN">有效长</NameAlias>
+            </NameAliases>
+            <DefinitionAliases>
+                <DefinitionAlias lang="zh-CN">股道有效长</DefinitionAlias>
+            </DefinitionAliases>
+        </PropertyDef>
+        <PropertyDef ifdguid="http://www.cbims.org.cn/Pset_StationCommon">
+            <Name>CentralPoint</Name>
+            <PropertyType p4:type="PropertySingleValue" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">
+                <TypePropertySingleValue>
+                    <DataType type="IfcLabel" />
+                </TypePropertySingleValue>
+            </PropertyType>
+            <NameAliases>
+                <NameAlias lang="zh-CN">中心里程</NameAlias>
+            </NameAliases>
+            <DefinitionAliases>
+                <DefinitionAlias lang="zh-CN">站中心位置</DefinitionAlias>
+            </DefinitionAliases>
+        </PropertyDef>
+        <PropertyDef ifdguid="http://www.cbims.org.cn/Pset_StationCommon">
+            <Name>DividingPonit</Name>
+            <PropertyType p4:type="PropertySingleValue" xmlns:p4="http://www.w3.org/2001/XMLSchema-instance">
+                <TypePropertySingleValue>
+                    <DataType type="IfcLabel" />
+                </TypePropertySingleValue>
+            </PropertyType>
+            <NameAliases>
+                <NameAlias lang="zh-CN">分界里程</NameAlias>
+            </NameAliases>
+            <DefinitionAliases>
+                <DefinitionAlias lang="zh-CN">土石方分界里程</DefinitionAlias>
+            </DefinitionAliases>
+        </PropertyDef>
+    </PropertyDefs>
+    <PsetDefinitionAliases>
+        <PsetDefinitionAlias lang="zh-CN">所有IfcRailwayStation实例的定义中通用的属性</PsetDefinitionAlias>
+    </PsetDefinitionAliases>
+</PropertySetDef>
