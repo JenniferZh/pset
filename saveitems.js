@@ -60,16 +60,16 @@ MongoClient.connect(url, function (err, db) {
 });
 
 
-// MongoClient.connect(url, function (err, db) {
-//     if(err) {
-//         console.error(err);
-//     } else {
-//         var itemPromises = [];
-//         for(var value in json)
-//             itemPromises.push(saveItem(db, value, json[value].child, json[value].parent, json[value].parentlist, json[value].attr, json[value].attr_all));
-//         Promise.all(itemPromises).then(function () {
-//             db.close();
-//         })
-//     }
-//
-// });
+MongoClient.connect(url, function (err, db) {
+    if(err) {
+        console.error(err);
+    } else {
+        var itemPromises = [];
+        for(var value in json)
+            itemPromises.push(saveItem(db, value, json[value].child, json[value].parent, json[value].parentlist, json[value].attr, json[value].attr_all));
+        Promise.all(itemPromises).then(function () {
+            db.close();
+        })
+    }
+
+});
