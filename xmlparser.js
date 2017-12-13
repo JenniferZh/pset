@@ -12,18 +12,18 @@ var views = [];
  * 读入mvdmxl，解析，生成相关数据
  * @type {Buffer | string}
  */
-var xml = fs.readFileSync('mvd\\example2.xml', {encoding: 'utf-8'});
+var xml = fs.readFileSync('./mvd/example2.xml', {encoding: 'utf-8'});
 var doc = new DOMParser().parseFromString(xml);
 
 infos.push(parseMVD(doc));
 
-xml = fs.readFileSync('mvd\\katalog.mvdxml', {encoding: 'utf-8'});
+xml = fs.readFileSync('./mvd/katalog.mvdxml', {encoding: 'utf-8'});
 doc = new DOMParser().parseFromString(xml);
 
 
 infos.push(parseMVD(doc));
 
-xml = fs.readFileSync('mvd\\example.xml', {encoding: 'utf-8'});
+xml = fs.readFileSync('./mvd/example.xml', {encoding: 'utf-8'});
 doc = new DOMParser().parseFromString(xml);
 
 infos.push(parseMVD(doc));
