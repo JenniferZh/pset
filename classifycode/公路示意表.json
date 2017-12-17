@@ -1,0 +1,47 @@
+{
+  "name": "公路构件",
+  "code": "00",
+  "children": [
+    {
+      "name": "护栏",
+      "code": "00-01",
+      "children":[
+        {
+          "name": "公路护栏",
+          "code": "00-01 01",
+          "children": []
+        },
+        {
+          "name": "中央分隔带护栏",
+          "code": "00-01 02",
+          "children": []
+        },
+        {
+          "name": "路侧护栏",
+          "code": "00-01 03",
+          "children": []
+        },
+        {
+          "name": "活动护栏",
+          "code": "00-01 04",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "公路中心线",
+      "code": "00-02",
+      "children": []
+    },
+    {
+      "name": "公路建筑界限",
+      "code": "00-03",
+      "children": []
+    },
+    {
+      "name": "土路肩",
+      "code": "00-04",
+      "children": []
+    }
+  ]
+}

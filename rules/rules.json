@@ -1,0 +1,23 @@
+[
+  {
+    "id":"3.0.1",
+    "source":"公路交通安全设施设计规范",
+    "content":"公路护栏按照防撞等级可分为：路侧B,A,SB,SA,SS五级",
+    "SNL": [
+      [{"name":"如果", "type":1, "ref":"#"},{"name":"公路护栏", "type":2, "ref":"/classitem/公路护栏"},{"name":"的", "type":1, "ref":"#"},{"name":"碰撞速度", "type":3, "ref":"#"}, {"name":"<=", "type":1, "ref":"#"},{"name":"40", "type":1, "ref":"#"}],
+      [{"name":"并且", "type":1, "ref":"#"},{"name":"公路护栏", "type":2, "ref":"/classitem/公路护栏"},{"name":"的", "type":1, "ref":"#"},{"name":"车辆质量", "type":3, "ref":"#"}, {"name":"<=", "type":1, "ref":"#"},{"name":"10", "type":1, "ref":"#"}],
+      [{"name":"并且", "type":1, "ref":"#"},{"name":"公路护栏", "type":2, "ref":"/classitem/公路护栏"},{"name":"的", "type":1, "ref":"#"},{"name":"碰撞角度", "type":3, "ref":"#"}, {"name":"<=", "type":1, "ref":"#"},{"name":"20", "type":1, "ref":"#"}],
+      [{"name":"那么", "type":1, "ref":"#"},{"name":"公路护栏", "type":2, "ref":"/classitem/公路护栏"},{"name":"的", "type":1, "ref":"#"},{"name":"碰撞等级", "type":3, "ref":"#"}, {"name":"equals", "type":1, "ref":"#"},{"name":"B", "type":1, "ref":"#"}]
+    ]
+  },
+  {
+    "id":"4.1.2",
+    "source":"公路交通安全设施设计规范",
+    "content":"路侧护栏应位于公路土路肩内，中央分隔带护栏应以公路中心线为轴对称设置。护栏的任何部分不的侵入公路建筑限界以内",
+    "SNL": [
+      [{"name":"所有", "type":1, "ref":"#"},{"name":"护栏", "type":2, "ref":"/classitem/护栏"},{"name":"不穿越", "type":1, "ref":"#"},{"name":"公路建筑界限", "type":2, "ref":"/classitem/公路建筑界限"}],
+      [{"name":"所有", "type":1, "ref":"#"},{"name":"中央分隔带护栏", "type":2, "ref":"/classitem/中央分隔带护栏"},{"name":"共轴重合于", "type":1, "ref":"#"},{"name":"公路中心线", "type":2, "ref":"/classitem/公路中心线"}],
+      [{"name":"所有", "type":1, "ref":"#"},{"name":"路侧护栏", "type":2, "ref":"/classitem/路侧护栏"},{"name":"共轴重合于", "type":1, "ref":"#"},{"name":"土路肩", "type":2, "ref":"/classitem/土路肩"}]
+    ]
+  }
+]
