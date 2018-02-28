@@ -67,22 +67,54 @@ function traserval(json, parent, parent_list, result) {
 }
 
 function  generate_class_data() {
-    testfolder = './classifycode';
+    var root = {};
+    root.name = "各专业分类编码";
+
+
+    var testfolder = './classifycode';
     var jsons = getFiles(testfolder);
     var myresult = [];
-    var root = {};
+    var rail_root = {};
 
-    root.name = '铁路领域分类编码';
-    root.childs = [];
+    rail_root.name = '铁路领域分类编码';
+    rail_root.childs = [];
+    rail_root.parent = "各专业分类编码";
+    rail_root.def = 'undefined';
+    rail_root.code = 'undefined';
+    rail_root.parent_list = ["各专业分类编码"];
+
+    for(var i = 0; i < jsons.length; i++) {
+        rail_root.childs.push(jsons[i].name);
+        traserval(jsons[i], '铁路领域分类编码', [] ,myresult);
+    }
+    myresult.push(rail_root);
+
+
+
+    var road_folder = './classifycode-road';
+    var road_jsons = getFiles(road_folder);
+    var road_root = {};
+
+    road_root.name = '公路领域分类编码';
+    road_root.childs = [];
+    road_root.parent = "各专业分类编码";
+    road_root.def = 'undefined';
+    road_root.code = 'undefined';
+    road_root.parent_list = ["各专业分类编码"];
+
+    for(var i = 0; i < road_jsons.length; i++) {
+        road_root.childs.push(road_jsons[i].name);
+        traserval(road_jsons[i], '公路领域分类编码', [], myresult);
+    }
+
+    myresult.push(road_root);
+
+
+    root.childs = ['铁路领域分类编码', '公路领域分类编码'];
     root.parent = 'null';
     root.def = 'undefined';
     root.code = 'undefined';
     root.parent_list = [];
-
-    for(var i = 0; i < jsons.length; i++) {
-        root.childs.push(jsons[i].name);
-        traserval(jsons[i], '铁路领域分类编码', [] ,myresult);
-    }
 
     myresult.push(root);
 
@@ -92,6 +124,8 @@ function  generate_class_data() {
 
     return Classcode;
 }
+
+
 
 
 
