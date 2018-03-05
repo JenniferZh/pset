@@ -1,7 +1,7 @@
 fs = require('fs');
 
-var railprefix = '/catalog/ifc/';
-var roadprefix = '/catalog/roadifc/';
+var railprefix = '/datamodel/ifcrailway/';
+var roadprefix = '/datamodel/ifcroad/';
 
 var railjson = JSON.parse(fs.readFileSync('test3.json', 'utf8'));
 var roadjson = JSON.parse(fs.readFileSync('test4.json', 'utf8'));

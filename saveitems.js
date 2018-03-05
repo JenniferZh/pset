@@ -199,30 +199,30 @@ MongoClient.connect(url, function (err, db) {
 });
 
 
-// MongoClient.connect(url, function (err, db) {
-//     if(err) {
-//         console.error(err);
-//     } else {
-//         var itemPromises = [];
-//         for(var value in json)
-//             itemPromises.push(saveItem(db, 'Items', value, json[value].child, json[value].parent, json[value].parentlist, json[value].attr, json[value].attr_all, json[value].equalclass));
-//         Promise.all(itemPromises).then(function () {
-//             db.close();
-//         })
-//     }
-//
-// });
-//
-//
-// MongoClient.connect(url, function (err, db) {
-//     if(err) {
-//         console.error(err);
-//     } else {
-//         var itemPromises = [];
-//         for(var value in json_road)
-//             itemPromises.push(saveItem(db, 'RoadItems', value, json_road[value].child, json_road[value].parent, json_road[value].parentlist, json_road[value].attr, json_road[value].attr_all, json_road[value].equalclass));
-//         Promise.all(itemPromises).then(function () {
-//             db.close();
-//         })
-//     }
-// });
+MongoClient.connect(url, function (err, db) {
+    if(err) {
+        console.error(err);
+    } else {
+        var itemPromises = [];
+        for(var value in json)
+            itemPromises.push(saveItem(db, 'Items', value, json[value].child, json[value].parent, json[value].parentlist, json[value].attr, json[value].attr_all, json[value].equalclass));
+        Promise.all(itemPromises).then(function () {
+            db.close();
+        })
+    }
+
+});
+
+
+MongoClient.connect(url, function (err, db) {
+    if(err) {
+        console.error(err);
+    } else {
+        var itemPromises = [];
+        for(var value in json_road)
+            itemPromises.push(saveItem(db, 'RoadItems', value, json_road[value].child, json_road[value].parent, json_road[value].parentlist, json_road[value].attr, json_road[value].attr_all, json_road[value].equalclass));
+        Promise.all(itemPromises).then(function () {
+            db.close();
+        })
+    }
+});
