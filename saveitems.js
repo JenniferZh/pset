@@ -133,14 +133,15 @@ function  generate_road_class_data() {
 }
 
 function equal_relation(RailData, RoadData){
-    var railprefix = '/classitem/';
-    var roadprefix = '/roadclassitem/';
+    var railprefix = '/crbim/';
+    var roadprefix = '/cccc/';
     //左边铁路右边公路
     var relation = [
         {key:'桥梁52040000', value:'桥梁17050000'},
         {key:'梁桥52041000', value:'梁式桥17050100'},
         {key:'拱桥52042000', value:'拱式桥17050200'},
         {key:'悬索桥52045000', value:'悬索桥17050400'},
+        {key:'刚构桥52043000', value:'刚架桥17050300'}
     ];
 
     for(var i = 0; i < RailData.split.length; i++)
