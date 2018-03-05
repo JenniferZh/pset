@@ -58,8 +58,9 @@ function traserval(json, parent, parent_list, result) {
     cur.parent = parent;
     cur.def = (json.def === undefined)? 'undefined':json.def;
     cur.childs = [];
-
     cur.parent_list = [];
+    cur.equalclass = [];
+
     for(var p = 0; p < parent_list.length; p++) {
         cur.parent_list.push(parent_list[p]);
     }
@@ -87,6 +88,7 @@ function  generate_class_data() {
     root.def = 'undefined';
     root.code = 'undefined';
     root.parent_list = [];
+    root.equalclass = [];
 
     for(var i = 0; i < jsons.length; i++) {
         root.childs.push(jsons[i].name);
@@ -114,6 +116,7 @@ function  generate_road_class_data() {
     root.def = 'undefined';
     root.code = 'undefined';
     root.parent_list = [];
+    root.equalclass = [];
 
     for(var i = 0; i < jsons.length; i++) {
         root.childs.push(jsons[i].name);
@@ -129,6 +132,70 @@ function  generate_road_class_data() {
     return Classcode;
 }
 
+function equal_relation(RailData, RoadData){
+    var railprefix = '/classitem/';
+    var roadprefix = '/roadclassitem/';
+    //左边铁路右边公路
+    var relation = [
+        {key:'桥梁52040000', value:'桥梁17050000'},
+        {key:'梁桥52041000', value:'梁式桥17050100'},
+        {key:'拱桥52042000', value:'拱式桥17050200'},
+        {key:'悬索桥52045000', value:'悬索桥17050400'},
+    ];
+
+    for(var i = 0; i < RailData.split.length; i++)
+    {
+        for(var j = 0; j < relation.length; j++)
+        {
+            if(RailData.split[i].name === relation[j].key)
+            {
+                RailData.split[i].equalclass.push(roadprefix+relation[j].value);
+            }
+        }
+    }
+
+    for(var i = 0; i < RoadData.split.length; i++)
+    {
+        for(var j = 0; j < relation.length; j++)
+        {
+            if(RoadData.split[i].name === relation[j].value)
+            {
+                RoadData.split[i].equalclass.push(railprefix+relation[j].key);
+            }
+        }
+    }
+
+
+    //console.log(RailData.split);
+    //console.log(RoadData.split);
+
+}
+
+
+MongoClient.connect(url, function (err, db) {
+    if(err) {
+        console.error(err);
+    } else {
+        var itemPromises = [];
+        var ClassCodeData = generate_class_data();
+        var ClassCodeRoadData = generate_road_class_data();
+
+        equal_relation(ClassCodeData, ClassCodeRoadData);
+
+        for(var i = 0; i < ClassCodeData.notsplit.length; i++)
+            itemPromises.push(saveJsonToCollection(db, 'Classcodes', ClassCodeData.notsplit[i]));
+
+        for(var i = 0; i < ClassCodeData.split.length; i++)
+            itemPromises.push(saveJsonToCollection(db, 'Classitems', ClassCodeData.split[i]));
+
+        for(var i = 0; i < ClassCodeRoadData.split.length; i++)
+            itemPromises.push(saveJsonToCollection(db, 'RoadClassitems', ClassCodeRoadData.split[i]));
+
+        Promise.all(itemPromises).then(function () {
+            db.close();
+        });
+    }
+});
 
 
 // MongoClient.connect(url, function (err, db) {
@@ -136,49 +203,25 @@ function  generate_road_class_data() {
 //         console.error(err);
 //     } else {
 //         var itemPromises = [];
-//         var ClassCodeData = generate_class_data();
-//         var ClassCodeRoadData = generate_road_class_data();
-//
-//         for(var i = 0; i < ClassCodeData.notsplit.length; i++)
-//             itemPromises.push(saveJsonToCollection(db, 'Classcodes', ClassCodeData.notsplit[i]));
-//
-//         for(var i = 0; i < ClassCodeData.split.length; i++)
-//             itemPromises.push(saveJsonToCollection(db, 'Classitems', ClassCodeData.split[i]));
-//
-//         for(var i = 0; i < ClassCodeRoadData.split.length; i++)
-//             itemPromises.push(saveJsonToCollection(db, 'RoadClassitems', ClassCodeRoadData.split[i]));
-//
+//         for(var value in json)
+//             itemPromises.push(saveItem(db, 'Items', value, json[value].child, json[value].parent, json[value].parentlist, json[value].attr, json[value].attr_all, json[value].equalclass));
 //         Promise.all(itemPromises).then(function () {
 //             db.close();
-//         });
+//         })
+//     }
+//
+// });
+//
+//
+// MongoClient.connect(url, function (err, db) {
+//     if(err) {
+//         console.error(err);
+//     } else {
+//         var itemPromises = [];
+//         for(var value in json_road)
+//             itemPromises.push(saveItem(db, 'RoadItems', value, json_road[value].child, json_road[value].parent, json_road[value].parentlist, json_road[value].attr, json_road[value].attr_all, json_road[value].equalclass));
+//         Promise.all(itemPromises).then(function () {
+//             db.close();
+//         })
 //     }
 // });
-
-
-MongoClient.connect(url, function (err, db) {
-    if(err) {
-        console.error(err);
-    } else {
-        var itemPromises = [];
-        for(var value in json)
-            itemPromises.push(saveItem(db, 'Items', value, json[value].child, json[value].parent, json[value].parentlist, json[value].attr, json[value].attr_all, json[value].equalclass));
-        Promise.all(itemPromises).then(function () {
-            db.close();
-        })
-    }
-
-});
-
-
-MongoClient.connect(url, function (err, db) {
-    if(err) {
-        console.error(err);
-    } else {
-        var itemPromises = [];
-        for(var value in json_road)
-            itemPromises.push(saveItem(db, 'RoadItems', value, json_road[value].child, json_road[value].parent, json_road[value].parentlist, json_road[value].attr, json_road[value].attr_all, json_road[value].equalclass));
-        Promise.all(itemPromises).then(function () {
-            db.close();
-        })
-    }
-});
