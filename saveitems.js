@@ -5,12 +5,13 @@ var MongoClient = require('mongodb').MongoClient,
     fs = require('fs'),
     url = 'mongodb://localhost/mylibrary';
 
-var json = JSON.parse(fs.readFileSync('test3.json', 'utf8'));
+var json = JSON.parse(fs.readFileSync('rail.json', 'utf8'));
+var json_road = JSON.parse(fs.readFileSync('road.json', 'utf8'));
 // console.log(json)
 
-var saveItem = function(db, name, childs, parent, parent_list, attr, attr_all) {
+var saveItem = function(db, collectionname, name, childs, parent, parent_list, attr, attr_all, equalclass) {
     return new Promise(function (resolve, reject) {
-        db.collection('Items').insert({name:name, childs:childs, parent:parent, parent_list:parent_list, attr:attr, attr_all:attr_all}, function(err, result) {
+        db.collection(collectionname).insert({name:name, childs:childs, parent:parent, parent_list:parent_list, attr:attr, attr_all:attr_all, equalclass: equalclass}, function(err, result) {
             if (err) {
                 reject(err);
             } else {
@@ -43,7 +44,7 @@ function getFiles(folder) {
 }
 
 function traserval(json, parent, parent_list, result) {
-    var cur = {}
+    var cur = {};
 
 
 
@@ -130,28 +131,28 @@ function  generate_road_class_data() {
 
 
 
-MongoClient.connect(url, function (err, db) {
-    if(err) {
-        console.error(err);
-    } else {
-        var itemPromises = [];
-        var ClassCodeData = generate_class_data();
-        var ClassCodeRoadData = generate_road_class_data();
-
-        for(var i = 0; i < ClassCodeData.notsplit.length; i++)
-            itemPromises.push(saveJsonToCollection(db, 'Classcodes', ClassCodeData.notsplit[i]));
-
-        for(var i = 0; i < ClassCodeData.split.length; i++)
-            itemPromises.push(saveJsonToCollection(db, 'Classitems', ClassCodeData.split[i]));
-
-        for(var i = 0; i < ClassCodeRoadData.split.length; i++)
-            itemPromises.push(saveJsonToCollection(db, 'RoadClassitems', ClassCodeRoadData.split[i]));
-
-        Promise.all(itemPromises).then(function () {
-            db.close();
-        });
-    }
-});
+// MongoClient.connect(url, function (err, db) {
+//     if(err) {
+//         console.error(err);
+//     } else {
+//         var itemPromises = [];
+//         var ClassCodeData = generate_class_data();
+//         var ClassCodeRoadData = generate_road_class_data();
+//
+//         for(var i = 0; i < ClassCodeData.notsplit.length; i++)
+//             itemPromises.push(saveJsonToCollection(db, 'Classcodes', ClassCodeData.notsplit[i]));
+//
+//         for(var i = 0; i < ClassCodeData.split.length; i++)
+//             itemPromises.push(saveJsonToCollection(db, 'Classitems', ClassCodeData.split[i]));
+//
+//         for(var i = 0; i < ClassCodeRoadData.split.length; i++)
+//             itemPromises.push(saveJsonToCollection(db, 'RoadClassitems', ClassCodeRoadData.split[i]));
+//
+//         Promise.all(itemPromises).then(function () {
+//             db.close();
+//         });
+//     }
+// });
 
 
 MongoClient.connect(url, function (err, db) {
@@ -160,10 +161,24 @@ MongoClient.connect(url, function (err, db) {
     } else {
         var itemPromises = [];
         for(var value in json)
-            itemPromises.push(saveItem(db, value, json[value].child, json[value].parent, json[value].parentlist, json[value].attr, json[value].attr_all));
+            itemPromises.push(saveItem(db, 'Items', value, json[value].child, json[value].parent, json[value].parentlist, json[value].attr, json[value].attr_all, json[value].equalclass));
         Promise.all(itemPromises).then(function () {
             db.close();
         })
     }
 
+});
+
+
+MongoClient.connect(url, function (err, db) {
+    if(err) {
+        console.error(err);
+    } else {
+        var itemPromises = [];
+        for(var value in json_road)
+            itemPromises.push(saveItem(db, 'RoadItems', value, json_road[value].child, json_road[value].parent, json_road[value].parentlist, json_road[value].attr, json_road[value].attr_all, json_road[value].equalclass));
+        Promise.all(itemPromises).then(function () {
+            db.close();
+        })
+    }
 });
