@@ -14,7 +14,7 @@
 ## 配制方法
 
 ```
-node saveitems.js
+node allscope.js
 node xmlparser.js
 node rules.js
 ```
