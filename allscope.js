@@ -6,9 +6,9 @@ var MongoClient = require('mongodb').MongoClient,
     fs = require('fs'),
     url = 'mongodb://localhost/mylibrary';
 
-var json = JSON.parse(fs.readFileSync('./allscope/alldata3.json', 'utf8'));
+var json = JSON.parse(fs.readFileSync('./allscope/alldata.json', 'utf8'));
 var same = JSON.parse(fs.readFileSync('./allscope/relationsame2.json', 'utf8'));
-var parent = JSON.parse(fs.readFileSync('./allscope/relationparent2.json', 'utf8'));
+var parent = JSON.parse(fs.readFileSync('./allscope/relationparent.json', 'utf8'));
 
 function addItemToCollection(db, collection, item) {
     return new Promise(function(resolve, reject) {
