@@ -11,10 +11,14 @@
 3. rules.js
 作用：生成Rules
 
+4. share.js
+作用：给AllScopes，RelationParent中增加共享层信息
+
 ## 配制方法
 
 ```
 node allscope.js
 node xmlparser.js
 node rules.js
+//node share.js
 ```
