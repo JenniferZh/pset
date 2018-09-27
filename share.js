@@ -5,6 +5,7 @@ var MongoClient = require('mongodb').MongoClient,
 var json = JSON.parse(fs.readFileSync('./share.json', 'utf8'));
 var sharejson = [];
 var relationjson = [];
+var relationsame = [];
 var set = new Set();
 var num = 1;
 
@@ -33,24 +34,43 @@ json.forEach(function(item) {
         relation.parent = 'GX-00000';
         relation.child = newshare.scope+'-'+newshare.code;
         relationjson.push(relation);
+
+        var relationsame_a = {};
+        relationsame_a.a = 'GX-'+newshare.code;
+        relationsame_a.b = item.a.code;
+        relationsame.push(relationsame_a);
+        var relationsame_b = {};
+        relationsame_b.a = 'GX-'+newshare.code;
+        relationsame_b.b = item.b.code;
+        relationsame.push(relationsame_b);
     }
     //console.log(item);
 });
 
-
 MongoClient.connect(url, function(err, db) {
 
-    db.collection('AllScopes').insertMany(sharejson, function(err, result) {
+    db.collection('RelationSame').insertMany(relationsame, function(err, result) {
         if(err) {
             throw err;
         }
-        db.collection('RelationParent').insertMany(relationjson, function(err, result) {
-            if(err) {
-                throw err;
-            }
-            db.close();
-        });
+        db.close();
     });
 });
+
+
+// MongoClient.connect(url, function(err, db) {
+//
+//     db.collection('AllScopes').insertMany(sharejson, function(err, result) {
+//         if(err) {
+//             throw err;
+//         }
+//         db.collection('RelationParent').insertMany(relationjson, function(err, result) {
+//             if(err) {
+//                 throw err;
+//             }
+//             db.close();
+//         });
+//     });
+// });
 
 
