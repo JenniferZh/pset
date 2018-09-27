@@ -44,15 +44,15 @@ json.forEach(function(item) {
         relationsame_b.b = item.b.code;
         relationsame.push(relationsame_b);
     } else {
-        var sharecode = set.get(item.a.name);
-        var relationsame_a = {};
-        relationsame_a.a = 'GX-'+sharecode;
-        relationsame_a.b = item.a.code;
-        relationsame.push(relationsame_a);
-        var relationsame_b = {};
-        relationsame_b.a = 'GX-'+sharecode;
-        relationsame_b.b = item.b.code;
-        relationsame.push(relationsame_b);
+        // var sharecode = set.get(item.a.name);
+        // var relationsame_a = {};
+        // relationsame_a.a = 'GX-'+sharecode;
+        // relationsame_a.b = item.a.code;
+        // relationsame.push(relationsame_a);
+        // var relationsame_b = {};
+        // relationsame_b.a = 'GX-'+sharecode;
+        // relationsame_b.b = item.b.code;
+        // relationsame.push(relationsame_b);
     }
     //console.log(item);
 });
